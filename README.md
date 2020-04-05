@@ -2,6 +2,10 @@
 This is a simple library to make analyzing gradescope data easier. Built-in functions will clean and sanitize the data. The package will also generate a couple of standard graphs and return the cleaned data to the user so they can create their own graphs.
 
 ## Example Usage
+First install the package (in the root of this git directory) with
+```
+python setup.py develop
+```
 This package simplifies may lines of data cleaning into a few short lines
 ```
 from earlyidentify import StudentData

@@ -29,7 +29,6 @@ class StudentData():
         # Does not normalize for the distribution of each problem set--this makes sense since
         # we are usually more concerned about the absolute scores of students on psets
         # We assume psets are worth the same amount
-    def formatter(self, dataset, dset_num):
         self.pset_averages = self.pset_averages / self.pset_averages.max()
         self.pset_averages["total"] = self.pset_averages.sum(axis=1)
         self.pset_averages["total"] = self.pset_averages["total"] / len(fnames)
@@ -42,6 +41,7 @@ class StudentData():
     def col_formatter(self, hw_num, name):
         return str(hw_num) + "." + str(name[:3])
 
+    def formatter(self, dataset, dset_num):
         # Assumes digits in name if and only if a question
         dataset.index = dataset[self.id_name]
         dataset = dataset.drop([col for col in dataset.columns if not bool(re.search(r'\d', col))], axis=1)
@@ -51,7 +51,7 @@ class StudentData():
     def graph_average(self, threshold=1, auto_ignore=False):
         to_plot = self.pset_averages[self.pset_averages["total"] <= threshold].drop("total", axis=1)
         if auto_ignore:
-            to_plot = to_plot.loc[~(to_plost[[1,2]] == 0).all()]
+            to_plot = to_plot[(to_plot[[1,2]].notna().T.all())]
         if to_plot.shape[0] == 0:
             print("Threshold too low")
         else:
