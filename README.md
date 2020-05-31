@@ -13,7 +13,7 @@ data = StudentData(["data/HW1_scores.csv", "data/HW2_scores.csv", "data/HW3_scor
 ```
 The first argument to `StudentData` should be a list of the file paths (order these from first to last pset). The second argument should be the identifier to join these data sets on (preferable use the anonymous key that Gradescope generates). If you want to do additionally filtration, you can specify students to drop by any property. For example, if I wanted to drop students with certain first names, I would do
 ```
-left = ["Anis", "Ashkhen", "Cara", "Desiree", "James", "Lingdi", "Reza", "Suzana", "Xiaoxuan"]
+left = ["Bob", "Joe", "Sarah", "Steven", "Cassidy"]
 data = StudentData(["data/HW1_scores.csv", "data/HW2_scores.csv", "data/HW3_scores.csv"], "SID", "First Name", left)
 ```
 Once you've imported your data, there are three key functions. The first function automatically graphs pset averages. It can be called out of the box as `test.graph_average()`. You can also call it with a threshold value to only look at students who have a lower than 80% average, for example as `data.graph_average(0.8)`. Finally, you can set `auto_ignore=True` to ignore students that had zeros on either of the first two psets to filter out students who may have dropped the class (the package automatically drops people with all zeros for this reason).
